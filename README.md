@@ -1,9 +1,9 @@
-# Tonic Validate for PRs
-Github action for running Tonic Validate evaluation on a PR
+# Tonic Validate for pull requests (PRs)
+Github action to run Tonic Validate evaluation on a PR
 
 # Setup
 
-The sample workflow can be added to .github/workflows and is all that is needed to kickoff a Tonic Validate evaluation on a PR.
+To kick off a Tonic Validate evaluation on a PR, add the sample workflow to .github/workflows.
 
 ```yml
 name: Tonic Validate
@@ -26,14 +26,19 @@ jobs:
           llm_response_path: <Path to Q&A for Evaluation>
 ```
 
-This workflow requires that you either set an OpenAI Api Key OR you set both an Azure API key and Azure Endpoint URL.  Additionally, you need to provide a value for llm_response_path which is the path (relative to the root of your repository) to a JSON file containing the questions and optional context and reference answers for which you wish evaluate with Tonic Validate. 
+This workflow requires that you do one of the following:
 
-Below is a sample set of questions and answers
+- Set an OpenAI API key
+- Set both an Azure API key and an Azure Endpoint URL
+
+You also must provide a value for `llm_response_path`, which is the path (relative to the root of your repository) to a JSON file that contains the questions and optional context and reference answers for Tonic Validate to evaluate. 
+
+Here is a sample set of questions and answers:
 
 ```json
 [
-    {"llm_answer":"Paris", "benchmark_item":{"question":"What is capital of Paris", "answer":"Paris"}},
-    {"llm_answer":"Berlin", "benchmark_item":{"question":"What is capital of Germany", "answer":"Berlin"}},
+    {"llm_answer":"Paris", "benchmark_item":{"question":"What is the capital of Paris", "answer":"Paris"}},
+    {"llm_answer":"Berlin", "benchmark_item":{"question":"What is the capital of Germany", "answer":"Berlin"}},
     {"llm_answer":"Sam Altman is the CEO of OpenAI", "llm_context_list": ["Sam Altman has been the CEO of OpenAI since 2019."], "benchmark_item":{"question":"Who is the CEO of OpenAI?", "answer":"Sam Altman"}},
 ]
 ```
