@@ -1,0 +1,46 @@
+# action.yaml
+name: 'Tonic Validate'
+description: 'A GitHub Action that uses Tonic Validate to evaluate your LLM application output'
+inputs:
+  llm_response_path:
+    description: 'Enter path to LLM response file'
+    required: true
+    type: string
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    - name: Install Dependencies
+      working-directory: validate_action
+      run: pip install -r requirements.txt
+      shell: bash        
+    - name: Evaluate
+      working-directory: validate_action
+      id: tonic-validate
+      env:
+        VALIDATE_RESPONSES_PATH: ${{ github.workspace	 }}/${{ inputs.llm_response_path }}
+      run: python src/runner.py
+      shell: bash
+    - name: Find Validate Comment
+      uses: peter-evans/find-comment@v3
+      id: fc
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body-includes: <!--tonic_validate-->
+    - name: Updating Validate Comment
+      if: steps.fc.outputs.comment-id != 0
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        body: ${{ steps.tonic-validate.outputs.validate_markdown_result }}
+        edit-mode: replace
+    - name: Creating Validate Comment
+      if: steps.fc.outputs.comment-id == 0
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body: ${{ steps.tonic-validate.outputs.validate_markdown_result }}
