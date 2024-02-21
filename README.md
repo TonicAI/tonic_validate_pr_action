@@ -1,4 +1,4 @@
-# tonic_validate_pr_action
+# Tonic Validate for PRs
 Github action for running Tonic Validate evaluation on a PR
 
 # Setup
