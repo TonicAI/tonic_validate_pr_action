@@ -1,5 +1,5 @@
 # action.yaml
-name: 'Tonic Validate'
+name: 'Tonic Validate for PRs'
 description: 'A GitHub Action that uses Tonic Validate to evaluate your LLM application output'
 inputs:
   llm_response_path:
