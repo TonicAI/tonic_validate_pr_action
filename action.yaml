@@ -44,3 +44,6 @@ runs:
       with:
         issue-number: ${{ github.event.pull_request.number }}
         body: ${{ steps.tonic-validate.outputs.validate_markdown_result }}
+branding:
+  color: gray-dark
+  icon: server        
