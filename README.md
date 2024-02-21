@@ -19,18 +19,9 @@ jobs:
       AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT}}
     steps:
       - name: Checkout Repro
-        uses: actions/checkout@v4
-      - name: Checkout Action
-        uses: actions/checkout@v4
-        with:
-          repository: akamor/gh_action_playground
-          path: validate_action
-          sparse-checkout: |
-            src
-            requirements.txt
+        uses: actions/checkout@v4      
       - name: Validate
-        id: tonic_validate        
-        uses: ./validate_action
+        uses: TonicAI/tonic_validate_pr_action@v0.1.0
         with:
           llm_response_path: <Path to Q&A for Evaluation>
 ```
