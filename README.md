@@ -1,5 +1,5 @@
 # Tonic Validate for pull requests (PRs)
-Github action to run Tonic Validate evaluation on a PR
+Github action to run Tonic Validate evaluation on a PR.  This Github action takes advantage of the open source [Tonic Validate library]([https://g](https://github.com/TonicAI/tonic_validate).
 
 ![image](https://github.com/TonicAI/tonic_validate_pr_action/assets/9391841/f7672f8f-ba83-4fd5-9a4d-afd54d36f75f)
 
