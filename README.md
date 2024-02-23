@@ -1,6 +1,9 @@
 # Tonic Validate for pull requests (PRs)
 Github action to run Tonic Validate evaluation on a PR
 
+![image](https://github.com/TonicAI/tonic_validate_pr_action/assets/9391841/f7672f8f-ba83-4fd5-9a4d-afd54d36f75f)
+
+
 # Setup
 
 To kick off a Tonic Validate evaluation on a PR, add the sample workflow to .github/workflows.
