@@ -16,15 +16,14 @@ runs:
         cache: 'pip'
     - name: Install Dependencies
       working-directory: validate_action
-      run: pip install -r requirements.txt
+      run: pip install -r ${{ github.action_path }}/requirements.txt
       shell: bash        
     - name: Evaluate
-      working-directory: validate_action
       id: tonic-validate
       env:
         VALIDATE_RESPONSES_PATH: ${{ github.workspace	 }}/${{ inputs.llm_response_path }}
         TONIC_VALIDATE_GITHUB_ACTION: true
-      run: python src/runner.py
+      run: python ${{ github.action_path }}/src/runner.py
       shell: bash
     - name: Find Validate Comment
       uses: peter-evans/find-comment@v3
