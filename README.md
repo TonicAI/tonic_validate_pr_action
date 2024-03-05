@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4      
       - name: Validate
-        uses: TonicAI/tonic_validate_pr_action@v0.1.0
+        uses: TonicAI/tonic_validate_pr_action@v0.3.0
         with:
           llm_response_path: <Path to Q&A for Evaluation>
 ```
